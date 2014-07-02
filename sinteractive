@@ -17,8 +17,13 @@ BS=$MYDIR/_interactive
 # Interactive screen script
 IS=$MYDIR/_interactive_screen
 
+# Default partition (Change this to suit your site!)
+# The user can specify another partition explicitly, sbatch will take
+# the last one on the command line.
+DEFAULTPART=interactive
+
 # Submit the job and get the job id
-JOB=`sbatch --output=/dev/null --error=/dev/null $@ $BS 2>&1 \
+JOB=`sbatch --output=/dev/null --error=/dev/null -p $DEFAULTPART $@ $BS 2>&1 \
     | egrep -o -e "\b[0-9]+$"`
 
 # Make sure the job is always canceled
