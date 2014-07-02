@@ -4,7 +4,7 @@ PURPOSE & USAGE
 Interactive shell with X11 forwarding for SLURM.
 
 Run sinteractive with the usual sbatch arguments, but DO NOT give a
-program to run.  When your job starts, you'll find yourself usng an
+program to run.  When your job starts, you'll find yourself using an
 interactive shell which has proper X11 forwarding enabled.
 
 
