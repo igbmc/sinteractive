@@ -1,10 +1,9 @@
 #!/bin/bash
 # -*- coding: utf-8 -*-
-# Author: Pär Andersson (National Supercomputer Centre, Sweden)
-# Version: 0.3 2007-07-30
-#
-# 2011-06-23: Joerg Bornschein <bornschein@fias.uni-frankfurt.de>
-#   Make this script find its own path
+# vim: set fileencoding=utf-8
+# Copyright (c) 2007 Pär Andersson (National Supercomputer Centre, Sweden),
+# 2011 Joerg Bornschein <bornschein@fias.uni-frankfurt.de>,
+# 2014 Janne Blomqvist  <janne.blomqvist@aalto.fi>
 #
 # This will submit a batch script that starts screen on a node.
 # Then ssh is used to connect to the node and attach the screen.
