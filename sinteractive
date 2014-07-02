@@ -11,11 +11,7 @@
 # The result is very similar to an interactive shell in PBS
 # (qsub -I)
 
-# Find our own path (linux specific)
-MYDIR="$( cd "$( dirname "$0" )" && pwd )"
-
-# or
-# MYDIR=/usr/local/bin
+MYDIR="$(dirname "$(readlink -f ${BASH_SOURCE[0]})")"
 
 # Batch Script that starts SCREEN
 BS=$MYDIR/_interactive
