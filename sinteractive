@@ -50,7 +50,7 @@ while true;do
 done
 
 # Determine the first node in the job:
-NODE=`srun --jobid=$JOB -N1 hostname`
+NODE=$(scontrol show job $JOB|perl -ne 'print "$1" if /BatchHost=(.+)\s/')
 
 # SSH to the node and attach the screen
 sleep 1s
