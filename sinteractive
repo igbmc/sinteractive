@@ -3,7 +3,7 @@
 # vim: set fileencoding=utf-8
 # Copyright (c) 2007 Pär Andersson (National Supercomputer Centre, Sweden),
 # 2011 Joerg Bornschein <bornschein@fias.uni-frankfurt.de>,
-# 2014 Janne Blomqvist  <janne.blomqvist@aalto.fi>
+# 2014-2016 Janne Blomqvist  <janne.blomqvist@aalto.fi>
 #
 # This will submit a batch script that starts screen on a node.
 # Then ssh is used to connect to the node and attach the screen.
@@ -23,8 +23,8 @@ IS=$MYDIR/_interactive_screen
 DEFAULTPART=interactive
 
 # Submit the job and get the job id
-JOB=`sbatch --output=/dev/null --error=/dev/null -p $DEFAULTPART $@ $BS 2>&1 \
-    | egrep -o -e "\b[0-9]+$"`
+JOB=$(sbatch --output=/dev/null --error=/dev/null -p $DEFAULTPART $@ $BS 2>&1 \
+    | egrep -o -e "\b[0-9]+$")
 
 # Make sure the job is always canceled
 trap "{ scancel -q $JOB; exit; }" SIGINT SIGTERM EXIT
@@ -34,7 +34,7 @@ while true;do
     sleep 1s
 
     # Check job status
-    STATUS=`squeue -j $JOB -t PD,R -h -o %t`
+    STATUS=$(squeue -j $JOB -t PD,R -h -o %t)
 
     if [ "$STATUS" = "R" ];then
 	# Job is running, break the while loop
