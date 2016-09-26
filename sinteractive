@@ -23,8 +23,12 @@ IS=$MYDIR/_interactive_screen
 DEFAULTPART=interactive
 
 # Submit the job and get the job id
-JOB=$(sbatch --output=/dev/null --error=/dev/null -p $DEFAULTPART $@ $BS 2>&1 \
-    | egrep -o -e "\b[0-9]+$")
+JOB=$(sbatch --output=/dev/null --error=/dev/null -p $DEFAULTPART $@ $BS \
+    | grep -E --line-buffered -o -e "\b[0-9]+$")
+sbatch_status=$?
+if [ $sbatch_status -ne 0 ];then
+    exit $sbatch_status
+fi
 
 # Make sure the job is always canceled
 trap "{ scancel -q $JOB; exit; }" SIGINT SIGTERM EXIT
