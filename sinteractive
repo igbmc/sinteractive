@@ -31,7 +31,7 @@ if [ $sbatch_status -ne 0 ];then
 fi
 
 # Make sure the job is always canceled
-trap "{ scancel -q $JOB; exit; }" SIGINT SIGTERM EXIT
+trap "{ scancel --quiet $JOB; exit; }" SIGINT SIGTERM EXIT
 
 echo "Waiting for JOBID $JOB to start"
 while true;do
