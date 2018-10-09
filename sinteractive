@@ -58,6 +58,5 @@ NODE=$(scontrol show job $JOB|perl -ne 'print "$1" if /BatchHost=(.+)\s/')
 
 # SSH to the node and attach the screen
 sleep 1s
-ssh -X -t $NODE $IS slurm$JOB
+ssh -o "StrictHostKeyChecking=no" -X -t $NODE $IS slurm$JOB
 # The trap will now cancel the job before exiting.
-
